@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import {Audio} from 'expo-av'
+import { Audio } from 'expo-av'
 import { Button } from 'react-native-web';
 
 export default function App() {
@@ -16,29 +16,29 @@ export default function App() {
       if(permission.status === 'granted'){
         await Audio.setAudioModeAsync({
           allowsRecordingIOS: true,
-          playsInSilinceMode: true
+          playsInSilenceMode: true
         });
 
         const { recording } = await Audio.Recording.createAsync(
           Audio.RECORDING_OPTIONS_PRESET_HIGH_QUALITY
         );
-        setRecording(recording)
+        setRecording(recording);
       }else{
-        setMessage("Please granted acces to mc")
+        setMessage("Please granted acces to mc");
       }
     }
     catch(err){
-      console.log('Failed to start recording', err)
-    }
+      console.log('Failed to start recording', err);
+    };
 
-  }
+  };
 
   async function stopRecording(){
-    setRecording(undefined)
+    setRecording(undefined);
     await recording.stopAndUnloadAsync()
 
-    let updatedRecordings = [...recordings]
-    const {sound, status} = await recording.CreateNewLoadedSoundAsync()
+    let updatedRecordings = [...recordings];
+    const {sound, status} = await recording.CreateNewLoadedSoundAsync();
     updatedRecordings.push({
       sound:sound,
       status:status,
@@ -51,12 +51,12 @@ export default function App() {
   }
 
   function getDurationFormatted(millis){
-    const minutes = millis / 1000 / 60
-    const minutesDisplay = Math.floor(minutes)
-    const seconds = Math.floor(minutes - minutesDisplay) * 60
-    const SecondsDisplay = seconds < 10 ? `0${seconds}` : seconds
+    const minutes = millis / 1000 / 60;
+    const minutesDisplay = Math.floor(minutes);
+    const seconds = Math.floor((minutes - minutesDisplay) * 60);
+    const secondsDisplay = seconds < 10 ? `0${seconds}` : seconds;
 
-    return `${minutesDisplay}:${SecondsDisplay}`
+    return `${minutesDisplay}:${secondsDisplay}`;
 
 
   }
@@ -76,7 +76,7 @@ export default function App() {
       <Text>{message}</Text>
       <Button 
         title={recording ? 'Stop Recording' : 'Start Recording'}
-        onPress= {recording ? 'Stop Recording' : 'Start Recording'}
+        onPress= {recording ? stopRecording : startRecording}
       
       
       />
@@ -105,6 +105,6 @@ const styles = StyleSheet.create({
     margin: 16
   }, 
   button:{
-    margin: 16
+    margin: "16px"
   }
 });
