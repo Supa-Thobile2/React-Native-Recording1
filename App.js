@@ -67,7 +67,10 @@ export default function App() {
       <Text>{message}</Text>
       <Button 
       title={recording ? 'Stop Recording': 'Start Recording'}
-      onPress = {recording ? stopRecording : startRecording}/>
+      onPress = {recording ? stopRecording : startRecording}
+
+      
+      />
       {getRecordingLines()}
       <StatusBar style="auto"/>
 
@@ -81,7 +84,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'lightblue',
+    backgroundColor: '#20F3C6',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -95,14 +98,10 @@ const styles = StyleSheet.create({
     margin: 16
   },
   button: {
-    margin: 16
+    margin: 16,
+   
+    
   },
 
-  button2:{
-    backgroundColor:'blue',
-    width:'40%',
-    padding:15,
-    borderRadius:10,
-    marginTop:35,
- },
+  
 });
